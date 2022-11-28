@@ -183,6 +183,9 @@ function theme_learnr_get_extra_scss($theme) {
  * @param array $options
  * @return bool
  */
+
+/*
+OLD 
 function theme_learnr_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
     if ($context->contextlevel == CONTEXT_SYSTEM && ($filearea === 'pagebackgroundimage' || $filearea === 'loginbackgroundimage' || $filearea === 'marketing1image' || $filearea === 'marketing2image' || $filearea === 'marketing3image')) {
         $theme = theme_config::load('learnr');
@@ -195,7 +198,29 @@ function theme_learnr_pluginfile($course, $cm, $context, $filearea, $args, $forc
         send_file_not_found();
     }
 }
+*/
 
+function theme_learnr_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+    static $theme;
+
+    if (empty($theme)) {
+        $theme = theme_config::load('learnr');
+    }
+    if ($context->contextlevel == CONTEXT_SYSTEM) {
+
+        if ($filearea === 'logo') {
+            return $theme->setting_file_serve('logo', $args, $forcedownload, $options);
+        } else if ($filearea === 'pagebackground') {
+            return $theme->setting_file_serve('pagebackground', $args, $forcedownload, $options);
+        } else if (preg_match("/slide[1-9][0-9]*image/", $filearea) !== false) {
+            return $theme->setting_file_serve($filearea, $args, $forcedownload, $options);
+        } else {
+            send_file_not_found();
+        }
+    } else {
+        send_file_not_found();
+    }
+}
 
 function theme_learnr_strip_html_tags( $text ) {
     $text = preg_replace(
@@ -251,4 +276,54 @@ function theme_learnr_course_trim_char($str, $n = 500, $endchar = '&#8230;') {
     $small = substr($str, 0, $n);
     $out = $small.$endchar;
     return $out;
+}
+
+
+
+/**
+ * Renderer the slider images.
+ * @param string $p
+ * @param string $sliname
+ * @return string
+ */
+function theme_learnr_render_slideimg($p, $sliname) {
+    global $PAGE, $OUTPUT;
+    $nos = theme_learnr_get_setting('numberofslides');
+    $i = $p % 3;
+    // Get slide image or fallback to default.
+    $slideimage = '';
+    if (theme_learnr_get_setting($sliname)) {
+        $slideimage = $PAGE->theme->setting_file_url($sliname , $sliname);
+    }
+    if (empty($sliname)) {
+        $slideimage = '';
+    }
+    return $slideimage;
+}
+
+/**
+ *
+ * Description
+ * @param string $setting
+ * @param bool $format
+ * @return string
+ */
+function theme_learnr_get_setting($setting, $format = true) {
+    global $CFG;
+    require_once($CFG->dirroot . '/lib/weblib.php');
+    static $theme;
+    if (empty($theme)) {
+        $theme = theme_config::load('learnr');
+    }
+    if (empty($theme->settings->$setting)) {
+        return false;
+    } else if (!$format) {
+        return $theme->settings->$setting;
+    } else if ($format === 'format_text') {
+        return format_text($theme->settings->$setting, FORMAT_PLAIN);
+    } else if ($format === 'format_html') {
+        return format_text($theme->settings->$setting, FORMAT_HTML, array('trusted' => true, 'noclean' => true));
+    } else {
+        return format_string($theme->settings->$setting);
+    }
 }

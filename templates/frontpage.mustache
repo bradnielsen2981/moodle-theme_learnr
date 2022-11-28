@@ -56,7 +56,6 @@
 <div id="page-wrapper" class="d-print-block">
 
     {{{ output.standard_top_of_body_html }}}
-    
     {{#showcourseindexnav}}
     {{#courseindex}}
         {{< theme_boost/drawer }}
@@ -72,30 +71,13 @@
         {{/ theme_boost/drawer}}
     {{/courseindex}}
     {{/showcourseindexnav}}
-    {{#showblockdrawer}}
-    {{#hasblocks}}
-        {{< theme_boost/drawer }}
-            {{$id}}theme_boost-drawers-blocks{{/id}}
-            {{$drawerclasses}}drawer drawer-right{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
-            {{$drawercontent}}
-                <section class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
-                    {{{ addblockbutton }}}
-                    {{{ sidepreblocks }}}
-                </section>
-            {{/drawercontent}}
-            {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
-            {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
-            {{$drawerstate}}show-drawer-right{{/drawerstate}}
-            {{$tooltipplacement}}left{{/tooltipplacement}}
-            {{$drawercloseonresize}}1{{/drawercloseonresize}}
-            {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
-        {{/ theme_boost/drawer}}
-    {{/hasblocks}}
-    {{/showblockdrawer}}
-    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#showcourseindexnav}}{{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{/showcourseindexnav}}{{#showblockdrawer}}{{#blockdraweropen}}show-drawer-right{{/blockdraweropen}}{{/showblockdrawer}} drag-container">
+
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#showcourseindexnav}}{{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{/showcourseindexnav}}{{#showblockdrawer}}{{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} {{/showblockdrawer}}drag-container">
         <div id="topofscroll" class="main-inner">
         {{{output.top_activity_navigation}}}
+        
         {{> theme_learnr/navbar }}
+        
             <div class="drawer-toggles d-flex">
             {{#showcourseindexnav}}
                 {{#courseindex}}
@@ -135,64 +117,15 @@
                 {{/hasblocks}}
             {{/showblockdrawer}}
             </div>
+            {{{ output.fpicons }}}
             {{{ output.full_header }}}
-            
-
-            {{! MOVE THIS CHUNK FROM BELOW }}
-                {{#displayheaderblocks}}
-
-                <div class="coursedashboard-container">
-                    {{#hasheaderblocks}}
-                        <div class="text-right blockpanelbtn">
-                            <button id="blocksliderbutton" class="btn btn-primary blockpanelbutton" type="button" data-toggle="collapse" data-target="#blockslider" aria-expanded="false" aria-controls="blockslider">
-                                <i class="fa fa-arrows-v" aria-hidden="true"> </i> <span class="blockbtntext">{{# str }} coursedashbutton, theme_learnr {{/ str }}</span>
-                            </button>
-                        </div>
-                    {{/hasheaderblocks}}
-                    <div class="coursedashboard">
-                    {{#showpageimage}}
-                        {{{ output.headerimage }}} 
-                    {{/showpageimage}}
-            
-                    {{#hasheaderblocks}}
-                    <div class="fp-blocks collapse slidingblockpanel" id="blockslider">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-4">
-                                        <section data-region="blocks-columna" class="hidden-print">
-                                            {{{ columnabtn }}}
-                                            {{{ columnaregion }}}
-                                        </section>
-                                </div>
-                                <div class="col-md-4">
-                                        <section data-region="blocks-columnb" class="hidden-print">
-                                            {{{ columnbbtn }}}
-                                            {{{ columnbregion }}}
-                                        </section>
-                                </div>
-                                <div class="col-md-4">
-                                        <section data-region="blocks-columnc" class="hidden-print">
-                                            {{{ columncbtn }}}
-                                            {{{ columncregion }}}
-                                        </section>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        {{/hasheaderblocks}}
-                        </div>
-
-                </div>
-                {{/displayheaderblocks}}
-
-
-            {{#secondarymoremenu}}
+            <!-- should only be visible to the admin and in edit mode-->
+            {{#secondarymoremenu}} 
                 <div class="secondary-navigation d-print-none">
                     {{> core/moremenu}}
                 </div>
             {{/secondarymoremenu}}
-            {{{ output.courseprogressbar }}}
-
+            {{> theme_learnr/slideshow }}
             <div id="page-content" class="pb-3 d-print-block">
                 <div id="region-main-box">
                     {{#hasregionmainsettingsmenu}}
@@ -218,6 +151,7 @@
                         {{#hasregionmainsettingsmenu}}
                             <div class="region_main_settings_menu_proxy"></div>
                         {{/hasregionmainsettingsmenu}}
+
                         {{{ output.course_content_header }}}
 
                         {{#headercontent}}
@@ -230,47 +164,34 @@
                                 </div>
                             </div>
                         {{/overflow}}
-
-                        {{! MOVE THE CHUNK ABOVE FROM HERE!!! }}
-
+                        {{#showblockdrawer}}
                         {{{ output.main_content }}}
+                        {{/showblockdrawer}}
+                        {{^showblockdrawer}}
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col">
+                            {{{ output.enrolform }}}
+                              {{{ output.main_content }}}
+                            </div>
+                            {{#hasblocks}}
+                            <div class="col-md-3">
+                              {{{ addblockbutton }}}
+                              {{{ sidepreblocks }}}
+                            </div>
+                            {{/hasblocks}}
+                          </div>
+                        </div>
+                        {{/showblockdrawer}}
                         {{{ output.course_content_footer }}}
                     </section>
+                    {{#hasmarketingtiles}}
+                        {{{ output.fp_marketingtiles }}}
+                    {{/hasmarketingtiles}}
                 </div>
             </div>
             {{{ output.activity_navigation }}}
-            {{#displayfooterblocks}}
-            {{#hasfooterblocks}}
-            <div class="container-fluid footerblocks">
-                    <div class="fp-blocks">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-4">
-                                        <section data-region="blocks-footera" class="hidden-print">
-                                            {{{ footerabtn }}}
-                                            {{{ footeraregion }}}
-                                        </section>
-                                </div>
-                                <div class="col-md-4">
-                                        <section data-region="blocks-footerb" class="hidden-print">
-                                            {{{ footerbbtn }}}
-                                            {{{ footerbregion }}}
-                                        </section>
-                                </div>
-                                <div class="col-md-4">
-                                        <section data-region="blocks-footerc" class="hidden-print">
-                                            {{{ footercbtn }}}
-                                            {{{ footercregion }}}
-                                        </section>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            {{/hasfooterblocks}}
-            {{/displayfooterblocks}}
         </div>
-
         {{> theme_boost/footer }}
     </div>
     {{{ output.standard_after_main_region_html }}}

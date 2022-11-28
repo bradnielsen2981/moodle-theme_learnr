@@ -30,6 +30,8 @@ require_once($CFG->dirroot . '/course/lib.php');
 // Add block button in editing mode.
 $addblockbutton = $OUTPUT->addblockbutton();
 
+$displayheaderblocks = $this->page->pagelayout == 'course' && isset($COURSE->id) && $COURSE->id > 1;
+
 user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
 user_preference_allow_ajax_update('drawer-open-index', PARAM_BOOL);
 user_preference_allow_ajax_update('drawer-open-block', PARAM_BOOL);
@@ -68,6 +70,8 @@ if (!$courseindex) {
     $courseindexopen = false;
 }
 
+
+#---------COPIED INTO FRONTPAGE-----------#
 $alertbox = '';
 if ($this->page->pagelayout == 'mydashboard' || $this->page->pagelayout == 'frontpage' || $this->page->pagelayout == 'mycourses' ) {
     $alertbox = (empty($this->page->theme->settings->alertbox)) ? false : format_text($this->page->theme->settings->alertbox);
@@ -82,6 +86,7 @@ $hasmarketingtiles = false;
 if ($this->page->pagelayout == 'mydashboard' || $this->page->pagelayout == 'frontpage') {
     $hasmarketingtiles = true;
 }
+#-----------------------------------------
 
 $showcourseindexnav = (empty($this->page->theme->settings->showcourseindexnav)) ? false : $this->page->theme->settings->showcourseindexnav;
 $showblockdrawer = (empty($this->page->theme->settings->showblockdrawer)) ? false : $this->page->theme->settings->showblockdrawer;
@@ -89,6 +94,7 @@ $showblockdrawer = (empty($this->page->theme->settings->showblockdrawer)) ? fals
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $forceblockdraweropen = $OUTPUT->firstview_fakeblocks();
 
+#-----------------------------------------
 $secondarynavigation = false;
 $overflow = '';
 if ($this->page->has_secondary_navigation()) {
@@ -100,6 +106,7 @@ if ($this->page->has_secondary_navigation()) {
         $overflow = $overflowdata->export_for_template($OUTPUT);
     }
 }
+#------------------------------------------
 
 $primary = new core\navigation\output\primary($PAGE);
 $renderer = $this->page->get_renderer('core');
@@ -110,6 +117,8 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 
 $header = $this->page->activityheader;
 $headercontent = $header->export_for_template($renderer);
+
+#----------------------------------------------------
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -136,6 +145,10 @@ $templatecontext = [
     'hasmarketingtiles' => $hasmarketingtiles,
     'addblockbutton' => $addblockbutton,
     'showblockdrawer' => $showblockdrawer,
+
 ];
+ 
+$this->page->requires->jquery();
+$this->page->requires->js('/theme/learnr/javascript/blockslider.js');
 
 echo $OUTPUT->render_from_template('theme_learnr/drawers', $templatecontext);

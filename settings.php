@@ -282,6 +282,14 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
+    $name = 'theme_learnr/showheaderblocks';
+    $title = get_string('showheaderblocks', 'theme_learnr');
+    $description = get_string('showheaderblocks_desc', 'theme_learnr');
+    $default = '1';
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
     // Show sitewide image.
     $name = 'theme_learnr/sitewideimage';
     $title = get_string('sitewideimage', 'theme_learnr');
@@ -1213,5 +1221,81 @@ if ($ADMIN->fulltree) {
     // Must add the page after definiting all the settings!
     $settings->add($page);
 
+        /* Slideshow Settings Start */
+        $temp = new admin_settingpage('theme_learnr_slideshow', get_string('slideshowheading', 'theme_learnr'));
+        $temp->add(new admin_setting_heading('theme_learnr_slideshow', get_string('slideshowheadingsub', 'theme_learnr'),
+        format_text(get_string('slideshowdesc', 'theme_learnr'), FORMAT_MARKDOWN)));
+    
+        // Display Slideshow.
+        $name = 'theme_learnr/toggleslideshow';
+        $title = get_string('toggleslideshow', 'theme_learnr');
+        $description = get_string('toggleslideshowdesc', 'theme_learnr');
+        $yes = get_string('yes');
+        $no = get_string('no');
+        $default = 1;
+        $choices = array(1 => $yes , 0 => $no);
+        $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $temp->add($setting);
+    
+        // Number of slides.
+        $name = 'theme_learnr/numberofslides';
+        $title = get_string('numberofslides', 'theme_learnr');
+        $description = get_string('numberofslides_desc', 'theme_learnr');
+        $default = 3;
+        $choices = array(
+            1 => '1',
+            2 => '2',
+            3 => '3',
+            4 => '4',
+            5 => '5',
+            6 => '6',
+            7 => '7',
+            8 => '8',
+            9 => '9',
+            10 => '10',
+            11 => '11',
+            12 => '12',
+        );
+        $temp->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
+    
+        // Slideshow settings.
+        $numberofslides = get_config('theme_learnr', 'numberofslides');
+        for ($i = 1; $i <= $numberofslides; $i++) {
+    
+            // This is the descriptor for Slide One.
+            $name = 'theme_learnr/slide' . $i . 'info';
+            $heading = get_string('slideno', 'theme_learnr', array('slide' => $i));
+            $information = get_string('slidenodesc', 'theme_learnr', array('slide' => $i));
+            $setting = new admin_setting_heading($name, $heading, $information);
+            $temp->add($setting);
+    
+            // Slide Image.
+            $name = 'theme_learnr/slide' . $i . 'image';
+            $title = get_string('slideimage', 'theme_learnr');
+            $description = get_string('slideimagedesc', 'theme_learnr');
+            $setting = new admin_setting_configstoredfile($name, $title, $description, 'slide' . $i . 'image');
+            $setting->set_updatedcallback('theme_reset_all_caches');
+            $temp->add($setting);
+    
+            // Slide Caption.
+            $name = 'theme_learnr/slide' . $i . 'caption';
+            $title = get_string('slidecaption', 'theme_learnr');
+            $description = get_string('slidecaptiondesc', 'theme_learnr');
+            $default = get_string('slidecaptiondefault', 'theme_learnr', array('slideno' => sprintf('%02d', $i) ));
+            $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
+            $temp->add($setting);
+    
+            // Slide Description Text.
+            $name = 'theme_learnr/slide' . $i . 'desc';
+            $title = get_string('slidedesc', 'theme_learnr');
+            $description = get_string('slidedesctext', 'theme_learnr');
+            $default = get_string('slidedescdefault', 'theme_learnr');
+            $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+            $temp->add($setting);
+        }
+
+        $settings->add($temp);
+    
+        /* Slideshow Settings End*/
 
 }

@@ -65,7 +65,7 @@ $THEME->layouts = [
     ],
     // The site home page.
     'frontpage' => [
-        'file' => 'drawers.php',
+        'file' => 'frontpage.php', //EDIT TO LOAD ACADEMIS FRONTPAGE
         'regions' => ['side-pre'],
         'defaultregion' => 'side-pre',
         'options' => ['nonavbar' => true],
