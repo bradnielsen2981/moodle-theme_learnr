@@ -159,7 +159,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             $heading = $prefix . $heading;
         }
         //BRAD EDIT HERE... WOULD PREFER TO PUT BANNER PICTURE HERE
-        //$html .= html_writer::tag('div', $heading, array('class' => 'page-header-headings'));
+        $html .= html_writer::tag('div', $heading, array('class' => 'page-header-headings'));
 
         // Buttons.
         if (isset($contextheader->additionalbuttons)) {
