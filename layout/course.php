@@ -203,7 +203,4 @@ $templatecontext = [
     'showpageimage' => $showpageimage,
 ];
 
-//$this->page->requires->jquery();
-//$this->page->requires->js('/theme/learnr/javascript/blockslider.js');
-//$this->page->requires->js('/theme/learnr/javascript/dropdownhover.js');
 echo $OUTPUT->render_from_template('theme_learnr/course', $templatecontext);

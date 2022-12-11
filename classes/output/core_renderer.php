@@ -104,32 +104,26 @@ class core_renderer extends \theme_boost\output\core_renderer {
                     'style' => 'background-image: url("' . $courseimage . '"); background-size: cover; background-position:center;
                     width: 100%; height: 100%;'
                 ));
-
-                /* BRAD - THIS IS WHERE THE COURSE HEADING SHOULD GO */
-                /* IF TITLE IS SET TO TRUE */
-                $html .= html_writer::start_div('learnr_courseheading');
-                    $html .= html_writer::start_tag('h2');
-                        $html .= $this->page->heading;
-                    $html .= html_writer::end_tag('h2');
-                $html .= html_writer::end_div();
-                $html .= html_writer::end_div(); // End withimage inline style div.
             }
             else if ($this->page->theme->settings->showpageimage == 1 && isset($headerbg)) {
                 $html .= html_writer::start_div('customimage', array(
                     'style' => 'background-image: url("' . $headerbgimgurl . '"); background-size: cover; background-position:center;
                     width: 100%; height: 100%;'
                 ));
-                $html .= html_writer::end_div(); // End withoutimage inline style div.
-                
             }
             else {
                 $html .= html_writer::start_div('defaultheaderimage', array(
                     'style' => 'background-image: url("' . $defaultimgurl . '"); background-size: cover; background-position:center;
                     width: 100%; height: 100%;'
                 ));
-                $html .= html_writer::end_div(); // End default inline style div.
             }
+            /* BRAD - COURSE HEADING INSERTED - NEED TO MAKE AN OPTION */
+            $html .= html_writer::start_div('learnr_courseheading');
+            $html .= html_writer::start_tag('h2');
+            $html .= $this->page->heading;
+            $html .= html_writer::end_tag('h2');
             $html .= html_writer::end_div();
+            $html .= html_writer::end_div(); // End withoutimage inline style div.
         }
         return $html;
     }
@@ -158,7 +152,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
             $prefix = html_writer::div($contextheader->prefix, 'text-muted text-uppercase small line-height-3');
             $heading = $prefix . $heading;
         }
-        //BRAD EDIT HERE... WOULD PREFER TO PUT BANNER PICTURE HERE
         $html .= html_writer::tag('div', $heading, array('class' => 'page-header-headings'));
 
         // Buttons.
@@ -207,6 +200,9 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $mycourses = get_string('latestcourses', 'theme_learnr');
         $mycoursesurl = new moodle_url('/my/');
         $mycoursesmenu = $this->learnr_mycourses();
+
+        //BRAD WHY IS THE My courses not in the mycourses tab
+        //debugging("MYCOURSESMENU ".var_dump($mycoursesmenu), DEBUG_DEVELOPER);
         $hasmycourses = $this->page->pagelayout == 'course' && (isset($this->page->theme->settings->showlatestcourses) && $this->page->theme->settings->showlatestcourses == 1);
         
         //$plugin = enrol_get_plugin('easy');
@@ -234,6 +230,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $easyenrolbtntext = get_string('easyenrollbtn', 'theme_learnr');
         if ($globalhaseasyenrollment && $this->page->pagelayout == 'course' && $coursehaseasyenrollment) {
             $easyenrolbtn = '<a href="' .$easycodelink. '" title="' .$easyenrolbtntext. '" class="btn btn-secondary easyenrolbtn" style="float:right;"><i class="fa fa-2x fa-key" aria-hidden="true"></i><span class="sr-only">' .$easyenrolbtntext. '</span></a>';
+            //ASSUMING THERE WILL BE AN EASY ENROL BUTTON AT SOME POINT
         }
 
         // Add a special case since /my/courses is a part of the /my subsystem.

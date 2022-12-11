@@ -1,8 +1,18 @@
 {{! This template will continue to embed submenu until no children remaining }}
-<li>
-    {{^divider}} {{! if not divider  }}
-        {{#is_action_link}} 
-            <a class="extendedmenu dropdown-item" role="menuitem" {{#actionattributes}}{{name}}="{{value}}"{{/actionattributes}} href="{{{url}}}{{{action}}}"
+<li {{#haschildren}} class="disable-hover" {{/haschildren}} >
+    {{#divider}}
+        <div class="dropdown-divider"></div>
+    {{/divider}}
+    {{^divider}}
+        
+        {{#is_action_link}}
+            <a class="dropdown-item role="menuitem" 
+                {{#actionattributes}}
+                    {{name}}="{{value}}"
+                {{/actionattributes}}
+                {{#url}}  
+                    href="{{{url}}}{{{action}}}" 
+                {{/url}}
                 data-disableactive="true" tabindex="-1">
                 {{{text}}}
             </a>
@@ -11,18 +21,23 @@
             {{/action_link_actions}}
         {{/is_action_link}}
         {{^is_action_link}}
-            <a class="extendedmenu dropdown-item" role="menuitem" href="{{{url}}}{{{action}}}" {{#isactive}}aria-current="true"{{/isactive}} tabindex="-1">{{{text}}}</a>
+            <a class="dropdown-item" role="menuitem"
+                {{#url}} 
+                    href="{{{url}}}{{{action}}}" 
+                {{/url}} 
+                {{#isactive}}
+                    aria-current="true"
+                {{/isactive}} tabindex="-1">
+                {{{text}}}
+            </a>
         {{/is_action_link}}
-    {{! BRAD TRY TO PLACE IN SUBMENU AND COULD MAKE THIS A RECURRING TEMPLATE!! }}
-    {{#haschildren}}
-        <ul class="extendedmenu dropdown-menu dropdown-submenu">
+
+        <ul class="dropdown-menu {{#haschildren}}dropdown-submenu{{/haschildren}}" 
+        role="{{#haschildren}}menu{{/haschildren}}" >
             {{#children}}
                 {{> core/moremenu_children_infinite }} {{! CALL ITSELF}}
             {{/children}}
         </ul>
-    {{/haschildren}}
+
     {{/divider}}
 </li>
-{{#divider}} {{! if divider  }}
-    <li class="navbar dropdown-divider"></li>
-{{/divider}}
