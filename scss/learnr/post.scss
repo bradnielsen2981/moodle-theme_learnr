@@ -182,3 +182,8 @@ body.format-multitopic .course-section { padding-top: 1rem; padding-bottom: 1rem
 
 /*Footer*/
 .fp-blocks { background-color: #f8f9fa; }
+
+/*FILE ICON FIX
+.activityiconcontainer.content .activityicon, .activityiconcontainer.content .icon {
+  filter: brightness(0) invert(1);
+}
