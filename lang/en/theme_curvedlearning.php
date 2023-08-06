@@ -15,19 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme LearnR - Language pack
+ * Theme curvedlearning - Language pack
  *
- * @package    theme_learnr
+ * @package    theme_curvedlearning
  * @copyright  2022 Dearborn Public Schools, Chris Kenniburg
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'LearnR';
-$string['choosereadme'] = 'Theme LearnR is an enhanced child theme of Boost provided by Moodle an Hochschulen e.V.';
-$string['configtitle'] = 'LearnR';
-$string['privacy:metadata'] = 'The LearnR theme does not store any personal data about any user.';
+$string['pluginname'] = 'curvedlearning';
+$string['choosereadme'] = 'Theme curvedlearning is an enhanced child theme of Boost provided by Moodle an Hochschulen e.V.';
+$string['configtitle'] = 'curvedlearning';
+$string['privacy:metadata'] = 'The curvedlearning theme does not store any personal data about any user.';
 $string['colorsettings'] = 'Color Settings';
 $string['contentsettings'] = 'Content Areas';
 $string['marketing'] = 'Marketing Tiles';
@@ -67,7 +67,7 @@ $string['backgroundimage_desc'] = 'This image will be used as the default Course
 $string['sectionstyle'] = 'Course Section Style Chooser';
 $string['sectionstyle_desc'] = 'Choose a style for course sections.';
 $string['sections-boost'] = 'Boost Default';
-$string['sections-learnr'] = 'LearnR Default Style';
+$string['sections-curvedlearning'] = 'curvedlearning Default Style';
 $string['sections-boxed'] = 'Boxed Style';
 $string['sections-bars'] = 'Solid Section Bars Style';
 $string['fullwidthpage'] = 'Full Width Page Display';

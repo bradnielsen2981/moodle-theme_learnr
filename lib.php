@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme LearnR - Library
+ * Theme curvedlearning - Library
  *
- * @package    theme_learnr
+ * @package    theme_curvedlearning
  * @copyright  2022 Dearborn Public Schools, Chris Kenniburg
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,7 +28,7 @@
  * @param theme_config $theme The theme config object.
  * @return string
  */
-function theme_learnr_get_main_scss_content($theme) {
+function theme_curvedlearning_get_main_scss_content($theme) {
     global $CFG;
 
     $scss = '';
@@ -36,32 +36,32 @@ function theme_learnr_get_main_scss_content($theme) {
     $fs = get_file_storage();
 
     $context = context_system::instance();
-    $scss .= file_get_contents($CFG->dirroot . '/theme/learnr/scss/learnr/pre.scss');
-    if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_learnr', 'preset', 0, '/', $filename))) {
+    $scss .= file_get_contents($CFG->dirroot . '/theme/curvedlearning/scss/curvedlearning/pre.scss');
+    if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_curvedlearning', 'preset', 0, '/', $filename))) {
         $scss .= $presetfile->get_content();
     } else {
         // Safety fallback - maybe new installs etc.
-        $scss .= file_get_contents($CFG->dirroot . '/theme/learnr/scss/preset/default.scss');
+        $scss .= file_get_contents($CFG->dirroot . '/theme/curvedlearning/scss/preset/default.scss');
     }
-    $scss .= file_get_contents($CFG->dirroot . '/theme/learnr/scss/learnr.scss');
+    $scss .= file_get_contents($CFG->dirroot . '/theme/curvedlearning/scss/curvedlearning.scss');
 
     if ($theme->settings->sectionstyle == 1) {
-        $scss .= file_get_contents($CFG->dirroot . '/theme/learnr/scss/sections/sections-learnr.scss');
+        $scss .= file_get_contents($CFG->dirroot . '/theme/curvedlearning/scss/sections/sections-curvedlearning.scss');
     }
 
     if ($theme->settings->sectionstyle == 2) {
-        $scss .= file_get_contents($CFG->dirroot . '/theme/learnr/scss/sections/sections-boxed.scss');
+        $scss .= file_get_contents($CFG->dirroot . '/theme/curvedlearning/scss/sections/sections-boxed.scss');
     }
 
     if ($theme->settings->sectionstyle == 3) {
-        $scss .= file_get_contents($CFG->dirroot . '/theme/learnr/scss/sections/sections-boost.scss');
+        $scss .= file_get_contents($CFG->dirroot . '/theme/curvedlearning/scss/sections/sections-boost.scss');
     }
 
     if ($theme->settings->sectionstyle == 4) {
-        $scss .= file_get_contents($CFG->dirroot . '/theme/learnr/scss/sections/sections-bars.scss');
+        $scss .= file_get_contents($CFG->dirroot . '/theme/curvedlearning/scss/sections/sections-bars.scss');
     }
 
-    $scss .= file_get_contents($CFG->dirroot . '/theme/learnr/scss/learnr/post.scss');
+    $scss .= file_get_contents($CFG->dirroot . '/theme/curvedlearning/scss/curvedlearning/post.scss');
 
     return $scss;
 }
@@ -72,7 +72,7 @@ function theme_learnr_get_main_scss_content($theme) {
  * @param theme_config $theme The theme config object.
  * @return array
  */
-function theme_learnr_get_pre_scss($theme) {
+function theme_curvedlearning_get_pre_scss($theme) {
     global $CFG;
 
     $scss = '';
@@ -146,9 +146,9 @@ function theme_learnr_get_pre_scss($theme) {
  *
  * @return string compiled css
  */
-function theme_learnr_get_precompiled_css() {
+function theme_curvedlearning_get_precompiled_css() {
     global $CFG;
-    return file_get_contents($CFG->dirroot . '/theme/learnr/style/moodle.css');
+    return file_get_contents($CFG->dirroot . '/theme/curvedlearning/style/moodle.css');
 }
 
 /**
@@ -157,7 +157,7 @@ function theme_learnr_get_precompiled_css() {
  * @param theme_config $theme The theme config object.
  * @return string
  */
-function theme_learnr_get_extra_scss($theme) {
+function theme_curvedlearning_get_extra_scss($theme) {
     $content = '';
 
     // Sets the login background image.
@@ -186,9 +186,9 @@ function theme_learnr_get_extra_scss($theme) {
 
 /*
 OLD 
-function theme_learnr_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+function theme_curvedlearning_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
     if ($context->contextlevel == CONTEXT_SYSTEM && ($filearea === 'pagebackgroundimage' || $filearea === 'loginbackgroundimage' || $filearea === 'marketing1image' || $filearea === 'marketing2image' || $filearea === 'marketing3image')) {
-        $theme = theme_config::load('learnr');
+        $theme = theme_config::load('curvedlearning');
         // By default, theme files must be cache-able by both browsers and proxies.
         if (!array_key_exists('cacheability', $options)) {
             $options['cacheability'] = 'public';
@@ -200,11 +200,11 @@ function theme_learnr_pluginfile($course, $cm, $context, $filearea, $args, $forc
 }
 */
 
-function theme_learnr_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+function theme_curvedlearning_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
     static $theme;
 
     if (empty($theme)) {
-        $theme = theme_config::load('learnr');
+        $theme = theme_config::load('curvedlearning');
     }
     if ($context->contextlevel == CONTEXT_SYSTEM) {
 
@@ -222,7 +222,7 @@ function theme_learnr_pluginfile($course, $cm, $context, $filearea, $args, $forc
     }
 }
 
-function theme_learnr_strip_html_tags( $text ) {
+function theme_curvedlearning_strip_html_tags( $text ) {
     $text = preg_replace(
         array(
             // Remove invisible content.
@@ -262,7 +262,7 @@ return strip_tags( $text );
  * @param $end_char
  * @return string
  */
-function theme_learnr_course_trim_char($str, $n = 500, $endchar = '&#8230;') {
+function theme_curvedlearning_course_trim_char($str, $n = 500, $endchar = '&#8230;') {
     if (strlen($str) < $n) {
         return $str;
     }
@@ -286,13 +286,13 @@ function theme_learnr_course_trim_char($str, $n = 500, $endchar = '&#8230;') {
  * @param string $sliname
  * @return string
  */
-function theme_learnr_render_slideimg($p, $sliname) {
+function theme_curvedlearning_render_slideimg($p, $sliname) {
     global $PAGE, $OUTPUT;
-    $nos = theme_learnr_get_setting('numberofslides');
+    $nos = theme_curvedlearning_get_setting('numberofslides');
     $i = $p % 3;
     // Get slide image or fallback to default.
     $slideimage = '';
-    if (theme_learnr_get_setting($sliname)) {
+    if (theme_curvedlearning_get_setting($sliname)) {
         $slideimage = $PAGE->theme->setting_file_url($sliname , $sliname);
     }
     if (empty($sliname)) {
@@ -308,12 +308,12 @@ function theme_learnr_render_slideimg($p, $sliname) {
  * @param bool $format
  * @return string
  */
-function theme_learnr_get_setting($setting, $format = true) {
+function theme_curvedlearning_get_setting($setting, $format = true) {
     global $CFG;
     require_once($CFG->dirroot . '/lib/weblib.php');
     static $theme;
     if (empty($theme)) {
-        $theme = theme_config::load('learnr');
+        $theme = theme_config::load('curvedlearning');
     }
     if (empty($theme->settings->$setting)) {
         return false;

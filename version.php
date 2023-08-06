@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme LearnR - Version file
+ * Theme curvedlearning - Version file
  *
- * @package    theme_learnr
+ * @package    theme_curvedlearning
  * @copyright  2022 Dearborn Public Schools, Chris Kenniburg
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'theme_learnr';
+$plugin->component = 'theme_curvedlearning';
 $plugin->version = 2022052100;
 $plugin->release = 'v1.6.1';
 $plugin->requires = 2022040100;

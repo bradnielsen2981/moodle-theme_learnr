@@ -35,5 +35,5 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes
 ];
 
-echo $OUTPUT->render_from_template('theme_learnr/login', $templatecontext);
+echo $OUTPUT->render_from_template('theme_curvedlearning/login', $templatecontext);
 

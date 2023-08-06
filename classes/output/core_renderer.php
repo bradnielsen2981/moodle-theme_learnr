@@ -15,14 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme LearnR - Core renderer
+ * Theme curvedlearning - Core renderer
  *
- * @package    theme_learnr
+ * @package    theme_curvedlearning
  * @copyright  2022 Dearborn Public Schools, Chris Kenniburg
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_learnr\output;
+namespace theme_curvedlearning\output;
 
 use html_writer;
 use custom_menu;
@@ -52,7 +52,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         }
 
         $progresschartcontext = ['progress' => $comppercent, 'hasprogressbar' => $hasprogressbar];
-        $progress = $this->render_from_template('theme_learnr/progress-bar', $progresschartcontext);
+        $progress = $this->render_from_template('theme_curvedlearning/progress-bar', $progresschartcontext);
 
         return $progress;
     }
@@ -118,7 +118,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 ));
             }
             /* BRAD - COURSE HEADING INSERTED - NEED TO MAKE AN OPTION */
-            $html .= html_writer::start_div('learnr_courseheading');
+            $html .= html_writer::start_div('curvedlearning_courseheading');
             $html .= html_writer::start_tag('h2');
             $html .= $this->page->heading;
             $html .= html_writer::end_tag('h2');
@@ -197,9 +197,9 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $pagetype = $this->page->pagetype;
         $homepage = get_home_page();
         $homepagetype = null;
-        $mycourses = get_string('latestcourses', 'theme_learnr');
+        $mycourses = get_string('latestcourses', 'theme_curvedlearning');
         $mycoursesurl = new moodle_url('/my/');
-        $mycoursesmenu = $this->learnr_mycourses();
+        $mycoursesmenu = $this->curvedlearning_mycourses();
 
         //BRAD WHY IS THE My courses not in the mycourses tab
         //debugging("MYCOURSESMENU ".var_dump($mycoursesmenu), DEBUG_DEVELOPER);
@@ -227,7 +227,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             ));
         }
         $easyenrolbtn = '';
-        $easyenrolbtntext = get_string('easyenrollbtn', 'theme_learnr');
+        $easyenrolbtntext = get_string('easyenrollbtn', 'theme_curvedlearning');
         if ($globalhaseasyenrollment && $this->page->pagelayout == 'course' && $coursehaseasyenrollment) {
             $easyenrolbtn = '<a href="' .$easycodelink. '" title="' .$easyenrolbtntext. '" class="btn btn-secondary easyenrolbtn" style="float:right;"><i class="fa fa-2x fa-key" aria-hidden="true"></i><span class="sr-only">' .$easyenrolbtntext. '</span></a>';
             //ASSUMING THERE WILL BE AN EASY ENROL BUTTON AT SOME POINT
@@ -265,7 +265,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         if (!empty($pagetype) && !empty($homepagetype) && $pagetype == $homepagetype) {
             $header->welcomemessage = \core_user::welcome_message();
         }
-        return $this->render_from_template('theme_learnr/core/full_header', $header);
+        return $this->render_from_template('theme_curvedlearning/core/full_header', $header);
     }
 
     /**
@@ -339,7 +339,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         }
         $activitynav = new \core_course\output\activity_navigation($prevmod, $nextmod);
         $renderer = $this->page->get_renderer('core', 'course');
-        return $renderer->render_from_template('theme_learnr/core_course/top_activity_navigation', $activitynav);
+        return $renderer->render_from_template('theme_curvedlearning/core_course/top_activity_navigation', $activitynav);
     }
 
     /**
@@ -472,7 +472,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             ) ,
         ) , 
     ];
-        return $this->render_from_template('theme_learnr/fpmarkettiles', $fp_marketingtiles);
+        return $this->render_from_template('theme_curvedlearning/fpmarkettiles', $fp_marketingtiles);
     }
 
     // The following code is a copied work of the code from theme Essential https://moodle.org/plugins/theme_essential, @copyright Gareth J Barnard
@@ -504,20 +504,20 @@ class core_renderer extends \theme_boost\output\core_renderer {
     // End copied code
 
     // The following code is a derivative work of the code from theme Essential https://moodle.org/plugins/theme_essential, by Gareth J Barnard
-    //BRAD MY COURSES MENU LEARNR
-    public function learnr_mycourses() {
+    //BRAD MY COURSES MENU curvedlearning
+    public function curvedlearning_mycourses() {
         $context = $this->page->context;
         $menu = new custom_menu();
         
-            $branchtitle = get_string('latestcourses', 'theme_learnr');
+            $branchtitle = get_string('latestcourses', 'theme_curvedlearning');
             $branchlabel = $branchtitle;
             $branchurl = new moodle_url('/my/courses.php');
             $branchsort = 10000;
             $branch = $menu->add($branchlabel, $branchurl, $branchtitle, $branchsort);
-            $dashlabel = get_string('viewallcourses', 'theme_learnr');
+            $dashlabel = get_string('viewallcourses', 'theme_curvedlearning');
             $dashurl = new moodle_url("/my/courses.php");
             $dashtitle = $dashlabel;
-            $nomycourses = get_string('nomycourses', 'theme_learnr');
+            $nomycourses = get_string('nomycourses', 'theme_curvedlearning');
             $courses = enrol_get_my_courses(null, 'sortorder ASC');
              
                 if ($courses) {
@@ -587,7 +587,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 $content = '';
                 foreach ($menu->get_children() as $item) {
                     $context = $item->export_for_template($this);
-                    $content .= $this->render_from_template('theme_learnr/mycourses', $context);
+                    $content .= $this->render_from_template('theme_curvedlearning/mycourses', $context);
                 }
         return $content;
     }
@@ -706,7 +706,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             ) , 
         ];
 
-        return $this->render_from_template('theme_learnr/fpicons', $fp_icons);
+        return $this->render_from_template('theme_curvedlearning/fpicons', $fp_icons);
 
     }
 

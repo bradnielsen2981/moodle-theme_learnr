@@ -15,19 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme LearnR - Privacy provider
+ * Theme curvedlearning - Privacy provider
  *
- * @package    theme_learnr
+ * @package    theme_curvedlearning
  * @copyright  2022 Dearborn Public Schools, Chris Kenniburg
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace theme_learnr\privacy;
+namespace theme_curvedlearning\privacy;
 
 /**
  * Privacy Subsystem implementing null_provider.
  *
- * @package    theme_learnr
+ * @package    theme_curvedlearning
  * @copyright  2022 Dearborn Public Schools, Chris Kenniburg
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

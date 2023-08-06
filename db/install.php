@@ -17,18 +17,18 @@
 /**
  * Define install function.
  *
- * @package    theme_learnr
+ * @package    theme_curvedlearning
  * @copyright  2015 onwards LMSACE Dev Team (http://www.lmsace.com)
  * @author     LMSACE Dev Team
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * Theme_learnr install function.
+ * Theme_curvedlearning install function.
  *
  * @return void
  */
-function xmldb_theme_learnr_install() {
+function xmldb_theme_curvedlearning_install() {
     global $CFG;
 
     if (method_exists('core_plugin_manager', 'reset_caches')) {
@@ -42,23 +42,23 @@ function xmldb_theme_learnr_install() {
         $i = 1;
         $fs = get_file_storage();
         $filerecord = new stdClass();
-        $filerecord->component = 'theme_learnr';
+        $filerecord->component = 'theme_curvedlearning';
         $filerecord->contextid = context_system::instance()->id;
         $filerecord->userid = get_admin()->id;
         $filerecord->filearea = 'slide1image';
         $filerecord->filepath = '/';
         $filerecord->itemid = 0;
         $filerecord->filename = 'slide1image.jpg';
-        $fs->create_file_from_pathname($filerecord, $CFG->dirroot . '/theme/learnr/pix/home/slide1.jpg');
+        $fs->create_file_from_pathname($filerecord, $CFG->dirroot . '/theme/curvedlearning/pix/home/slide1.jpg');
 
         $fs = get_file_storage();
         $filerecord = new stdClass();
-        $filerecord->component = 'theme_learnr';
+        $filerecord->component = 'theme_curvedlearning';
         $filerecord->contextid = context_system::instance()->id;
         $filerecord->userid = get_admin()->id;
         $filerecord->filearea = 'logo';
         $filerecord->filepath = '/';
         $filerecord->itemid = 0;
         $filerecord->filename = 'logo.png';
-        $fs->create_file_from_pathname($filerecord, $CFG->dirroot . '/theme/learnr/pix/home/logo.png');
+        $fs->create_file_from_pathname($filerecord, $CFG->dirroot . '/theme/curvedlearning/pix/home/logo.png');
 }

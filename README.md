@@ -1,7 +1,7 @@
-moodle-theme_learnr
+moodle-theme_curvedlearning
 ========================
-# LearnR
-A Moodle 4.0 Boost child theme made for learners. The LearnR theme builds on the new layouts and user experiences introduced in Moodle 4.0. LearnR provides a variety of layouts and options that allow you to provide incredibly structured navigation and pathways to course materials. Continuing the line of evolve-D, Pioneer, and Fordson, the LearnR theme is focused on a student going from “login to learning” quickly and easily.
+# curvedlearning
+A Moodle 4.0 Boost child theme made for learners. The curvedlearning theme builds on the new layouts and user experiences introduced in Moodle 4.0. curvedlearning provides a variety of layouts and options that allow you to provide incredibly structured navigation and pathways to course materials. Continuing the line of evolve-D, Pioneer, and Fordson, the curvedlearning theme is focused on a student going from “login to learning” quickly and easily.
 
 ## Ver 1.6.1
 * Fixed conflict with Fordson theme

@@ -17,7 +17,7 @@
 /**
  * A drawer based layout for the boost theme.
  *
- * @package   theme_learnr
+ * @package   theme_curvedlearning
  * @copyright 2021 Bas Brands
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -127,14 +127,14 @@ $headercontent = $header->export_for_template($renderer);
 
 #-------------------------------------------
 // Slide show content.
-if (theme_learnr_get_setting('toggleslideshow')) {
-    $data['numberofslides'] = theme_learnr_get_setting('numberofslides');
+if (theme_curvedlearning_get_setting('toggleslideshow')) {
+    $data['numberofslides'] = theme_curvedlearning_get_setting('numberofslides');
     $visableslide = 0;
     for ($s1 = 1; $s1 <= $data['numberofslides']; $s1++) :
         $slide['s'] = $s1;
-        $slide['slidecaption'] = theme_learnr_get_setting('slide' . $s1 . 'caption', true);
-        $slide['slidedesc'] = theme_learnr_get_setting('slide' . $s1 . 'desc', 'format_html');
-        $slide['slideimg'] = theme_learnr_render_slideimg($s1, 'slide' . $s1 . 'image');
+        $slide['slidecaption'] = theme_curvedlearning_get_setting('slide' . $s1 . 'caption', true);
+        $slide['slidedesc'] = theme_curvedlearning_get_setting('slide' . $s1 . 'desc', 'format_html');
+        $slide['slideimg'] = theme_curvedlearning_render_slideimg($s1, 'slide' . $s1 . 'image');
         if ($slide['slideimg']) {
             $visableslide += 1;
             $slide['clstxt1'] = ($visableslide == "1") ? ' active' : '';
@@ -171,4 +171,4 @@ $templatecontext += [
     'addblockbutton' => $addblockbutton
 ];
 
-echo $OUTPUT->render_from_template('theme_learnr/frontpage', $templatecontext);
+echo $OUTPUT->render_from_template('theme_curvedlearning/frontpage', $templatecontext);

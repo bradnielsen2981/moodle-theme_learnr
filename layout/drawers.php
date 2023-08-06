@@ -150,4 +150,4 @@ $templatecontext = [
  
 
 
-echo $OUTPUT->render_from_template('theme_learnr/drawers', $templatecontext);
+echo $OUTPUT->render_from_template('theme_curvedlearning/drawers', $templatecontext);

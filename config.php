@@ -15,22 +15,22 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme LearnR - Theme config
+ * Theme curvedlearning - Theme config
  *
- * @package    theme_learnr
+ * @package    theme_curvedlearning
  * @copyright  2022 Dearborn Public Schools, Chris Kenniburg
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$THEME->name = 'learnr';
+$THEME->name = 'curvedlearning';
 $THEME->parents = ['boost'];
 $THEME->sheets = [];
 $THEME->editor_sheets = [];
 $THEME->usefallback = true;
 $THEME->scss = function($theme) {
-    return theme_learnr_get_main_scss_content($theme);
+    return theme_curvedlearning_get_main_scss_content($theme);
 };
 
 $THEME->layouts = [
@@ -202,10 +202,10 @@ if ($THEME->settings->showheaderblockpanel == 1 && $THEME->settings->showblockdr
     ];
 }
 
-$THEME->prescsscallback = 'theme_learnr_get_pre_scss';
-$THEME->extrascsscallback = 'theme_learnr_get_extra_scss';
+$THEME->prescsscallback = 'theme_curvedlearning_get_pre_scss';
+$THEME->extrascsscallback = 'theme_curvedlearning_get_extra_scss';
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
-$THEME->precompiledcsscallback = 'theme_learnr_get_precompiled_css';
+$THEME->precompiledcsscallback = 'theme_curvedlearning_get_precompiled_css';
 $THEME->yuicssmodules = array();
 
 $THEME->haseditswitch = true;

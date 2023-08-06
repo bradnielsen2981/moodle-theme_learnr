@@ -21,7 +21,7 @@
  * @copyright  2016 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace theme_learnr\output\core;
+namespace theme_curvedlearning\output\core;
 defined('MOODLE_INTERNAL') || die();
 use moodle_url;
 use lang_string;
@@ -89,9 +89,9 @@ class course_renderer extends \core_course_renderer  {
                 $rowcontent = '';
                 foreach ($courseids as $courseid) {
                     $course = get_course($courseid);
-                    $summary = theme_learnr_strip_html_tags($course->summary);
-                    $summary = format_text(theme_learnr_course_trim_char($summary, $trimsummaryvalue));
-                    $trimtitle = format_string(theme_learnr_course_trim_char($course->fullname, $trimtitlevalue));
+                    $summary = theme_curvedlearning_strip_html_tags($course->summary);
+                    $summary = format_text(theme_curvedlearning_course_trim_char($summary, $trimsummaryvalue));
+                    $trimtitle = format_string(theme_curvedlearning_course_trim_char($course->fullname, $trimtitlevalue));
                     $noimgurl = $OUTPUT->image_url('noimg', 'theme');
                     $courseurl = new moodle_url('/course/view.php', array(
                         'id' => $courseid
@@ -228,7 +228,7 @@ class course_renderer extends \core_course_renderer  {
                     }
                     if ($coursetilestyle == 2) {
                         // display course contacts. See core_course_list_element::get_course_contacts().
-                        $enrollbutton = get_string('enrollcoursecard', 'theme_learnr');
+                        $enrollbutton = get_string('enrollcoursecard', 'theme_curvedlearning');
                         $rowcontent .= '
                 <div class="col-md-4">
                     ';
@@ -698,7 +698,7 @@ background-blend-mode: overlay;">
             return '';
         }
 
-        $nomycourses = '<div class="alert alert-info alert-block">' . get_string('nomycourses', 'theme_learnr') . '</div>';
+        $nomycourses = '<div class="alert alert-info alert-block">' . get_string('nomycourses', 'theme_curvedlearning') . '</div>';
         $lastaccess = '';
         $output = '';
         $showbylastaccess = 1;

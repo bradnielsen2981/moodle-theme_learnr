@@ -54,8 +54,8 @@ span.login a { margin-right:8px; }
     background-color: #03148f; }
 
 /*COURSE PAGE*/
-.learnr_courseheading { margin-bottom: 20px; background-size: cover; padding: 35px; }
-.learnr_courseheading h2 { display: flex; color: white; text-shadow: 2px 2px 4px #000000ab; font-size: 33px; width: fit-content;
+.curvedlearning_courseheading { margin-bottom: 20px; background-size: cover; padding: 35px; }
+.curvedlearning_courseheading h2 { display: flex; color: white; text-shadow: 2px 2px 4px #000000ab; font-size: 33px; width: fit-content;
   min-height: 1.3em; vertical-align: middle; padding: 4px 12px 3px; line-height: 1.4em;  background: #03148eb0; //background: #0f1786c0;
   white-space: pre-wrap;
   font-weight:600;} 
@@ -182,3 +182,8 @@ body.format-multitopic .course-section { padding-top: 1rem; padding-bottom: 1rem
 
 /*Footer*/
 .fp-blocks { background-color: #f8f9fa; }
+
+/*FILE ICON FIX
+.activityiconcontainer.content .activityicon, .activityiconcontainer.content .icon {
+  filter: brightness(0) invert(1);
+}

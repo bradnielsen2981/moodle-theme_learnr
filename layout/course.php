@@ -56,7 +56,6 @@ if (($checkblocka || $checkblockb || $checkblockc) && $this->page->theme->settin
     $hasheaderblocks = true;
 }
 
-
 $blocksfootera = $OUTPUT->blocks('footera');
 $blocksfooterb = $OUTPUT->blocks('footerb');
 $blocksfooterc = $OUTPUT->blocks('footerc');
@@ -203,4 +202,4 @@ $templatecontext = [
     'showpageimage' => $showpageimage,
 ];
 
-echo $OUTPUT->render_from_template('theme_learnr/course', $templatecontext);
+echo $OUTPUT->render_from_template('theme_curvedlearning/course', $templatecontext);
